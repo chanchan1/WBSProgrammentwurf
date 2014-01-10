@@ -1,4 +1,4 @@
-package Emotionserkennung;
+package emotionRecognition;
 
 /* ---------------------------------------------------------------------- */
 /* Module  : evidences / dempster shafer                                  */
@@ -70,7 +70,7 @@ public class Dempster {
 		Set ret;
 		int i;
 
-		ret = new Set(); //malloc
+		ret = new Set(); 
 
 		ret.size = size;
 

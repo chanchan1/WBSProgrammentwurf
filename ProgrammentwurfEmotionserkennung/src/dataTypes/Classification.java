@@ -1,4 +1,4 @@
-package DataTypes;
+package dataTypes;
 
 public enum Classification {
 

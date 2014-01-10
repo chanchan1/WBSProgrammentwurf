@@ -1,6 +1,6 @@
-package DataPreparation;
+package dataPreparation;
 
-import DataTypes.Frame;
+import dataTypes.Frame;
 
 public class CalculateBinarValues {
 	

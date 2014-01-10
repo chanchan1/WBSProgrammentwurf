@@ -1,4 +1,4 @@
-package Emotions;
+package emotions;
 
 public class Joy extends Emotion {
 

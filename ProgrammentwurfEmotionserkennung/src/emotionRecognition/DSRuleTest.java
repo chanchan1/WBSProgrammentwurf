@@ -1,10 +1,10 @@
-package Emotionserkennung;
+package emotionRecognition;
 
 /* ---------------------------------------------------------------------- */
 /* Test program for the dempster shafer rule                              */
 /* ---------------------------------------------------------------------- */
 
-import static Emotionserkennung.Dempster.*;
+import static emotionRecognition.Dempster.*;
 
 public class DSRuleTest {
 

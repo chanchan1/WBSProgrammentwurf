@@ -1,10 +1,11 @@
-package Emotions;
+package emotions;
 
 import java.awt.List;
 import java.util.ArrayList;
 
-import DataTypes.Classification;
-import DataTypes.Frame;
+import dataTypes.Classification;
+import dataTypes.Frame;
+
 
 public class Classificator {
 	

@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
-import DataPreparation.CalculateBinarValues;
-import DataPreparation.ReadCSV;
-import DataTypes.Classification;
-import DataTypes.Frame;
+import dataPreparation.CalculateBinarValues;
+import dataPreparation.ReadCSV;
+import dataTypes.Classification;
+import dataTypes.Frame;
+
 
 
 public class Main {

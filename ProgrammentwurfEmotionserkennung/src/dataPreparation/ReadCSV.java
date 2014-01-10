@@ -1,8 +1,9 @@
-package DataPreparation;
+package dataPreparation;
 
 import java.util.ArrayList;
 
-import DataTypes.Frame;
+import dataTypes.Frame;
+
 
 public class ReadCSV {
 	

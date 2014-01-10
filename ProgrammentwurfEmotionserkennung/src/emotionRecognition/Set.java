@@ -1,11 +1,10 @@
-package Emotionserkennung;
+package emotionRecognition;
 
 import java.util.Arrays;
 
 /* A simple set representation by marking an alternative as present (1)   */
 public class Set {
-	/* The maximum number of alternatives is set by a system constant (could  */
-    /* be replaced by dynamic memory allocation later).                       */
+	/* The maximum number of alternatives is set by a system constant     */
 	public static int MAX_ALTERNATIVES = 20;
 
 	public int alt[] = new int[MAX_ALTERNATIVES];

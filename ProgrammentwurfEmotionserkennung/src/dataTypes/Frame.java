@@ -1,9 +1,9 @@
-package DataTypes;
+package dataTypes;
 
-import Emotions.Anger;
-import Emotions.Fear;
-import Emotions.Joy;
-import Emotions.Surprise;
+import emotions.Anger;
+import emotions.Fear;
+import emotions.Joy;
+import emotions.Surprise;
 
 public class Frame {
 	
