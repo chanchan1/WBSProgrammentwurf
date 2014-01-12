@@ -37,6 +37,14 @@ public abstract class Emotion {
 	}
 
 
+	public Emotion(double plausibility, double belief, double doubt){
+		super();
+		this.plausibility = plausibility;
+		this.belief = belief;
+		this.doubt = doubt;
+	}
+
+
 	public Emotion()
 	{
 	

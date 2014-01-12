@@ -15,10 +15,10 @@ public class Frame {
 	boolean beyelid;
 	
 	//Emotions
-	Anger anger = new Anger();
-	Fear fear = new Fear();
-	Joy joy = new Joy();
-	Surprise surprise = new Surprise();
+	Anger anger;
+	Fear fear;
+	Joy joy;
+	Surprise surprise;
 	
 	Classification emotionclassification;
 	
