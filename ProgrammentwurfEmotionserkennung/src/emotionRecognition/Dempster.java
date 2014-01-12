@@ -83,11 +83,11 @@ public class Dempster {
 
 		for (i = 0; i < ret.size; i++) {
 	/* correcting invalid flags: if >= 1 assume 1 else assume 0           */
-
-			if (a[i] >= 1)
+			if (a[i] == 1)
 				ret.alt[i] = 1;
-			else
-				ret.alt[i] = 0;
+			else if(a[i]>=1)
+				 ret.alt[i] = 2;
+				else ret.alt[i] = 0;
 		}
 
 		return ret;
@@ -102,18 +102,17 @@ public class Dempster {
 	/* Predicate name : completeAlternatives                                  */
 	/* 	---------------------------------------------------------------------- */
 	/* 	Description :                                                          */
-	/* 	Returns 1 if the parameter consists of a complete set of alternatives  */
-	/* 	(representing A), else 0.                                              */
+	/* 	Returns true if the parameter consists of a complete set of alternatives  */
+	/* 	(representing A), else false.                                              */
 	/* 	---------------------------------------------------------------------- */
 	public static boolean completeAlternatives(Set p) {
-		int ret = 0;
 		int i;
 
 		for (i = 0; i < p.size; i++) {
-			ret += p.alt[i];
+			if(p.alt[i]!=1)return false;
 		}
 
-		return (ret == p.size);
+		return true;
 	}
 
 	/* ---------------------------------------------------------------------- */
