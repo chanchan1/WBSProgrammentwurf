@@ -1,8 +1,12 @@
 package emotions;
 
-public class Fear extends Emotion{
+import dataTypes.Classification;
 
-	public Fear(float plausibility, float singleBelief, float singleDoubt){
+public class Fear extends Emotion
+{
+	Classification name = Classification.Fear;
+	public Fear(float plausibility, float singleBelief, float singleDoubt)
+	{
 		super(plausibility, singleBelief, singleDoubt);
 	}
 

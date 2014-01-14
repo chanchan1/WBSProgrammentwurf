@@ -1,6 +1,10 @@
 package dataTypes;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import emotions.Anger;
+import emotions.Emotion;
 import emotions.Fear;
 import emotions.Joy;
 import emotions.Surprise;
@@ -20,12 +24,24 @@ public class Frame {
 	Joy joy;
 	Surprise surprise;
 	
-	Classification emotionclassification;
+	private ArrayList<Emotion> emotions = new ArrayList<Emotion>();
+	
+	Classification emotionClassification;
+	
 	
 	
 	public Frame()
 	{
 		
+		getEmotions().add(anger);
+		getEmotions().add(fear);
+		getEmotions().add(joy);
+		getEmotions().add(surprise);
+	}
+	
+	public void sortEmotions()
+	{
+		Collections.sort(emotions);
 	}
 
 
@@ -49,6 +65,13 @@ public class Frame {
 	}
 
 
+	public Classification getEmotionClassification() {
+		return emotionClassification;
+	}
+
+	public void setEmotionClassification(Classification emotionClassification) {
+		this.emotionClassification = emotionClassification;
+	}
 
 
 
@@ -123,13 +146,15 @@ public class Frame {
 	}
 
 
-	public Classification getEmotionclassification() {
-		return emotionclassification;
+
+
+	public ArrayList<Emotion> getEmotions() {
+		return emotions;
 	}
 
 
-	public void setEmotionclassification(Classification emotionclassification) {
-		this.emotionclassification = emotionclassification;
+	public void setEmotions(ArrayList<Emotion> emotions) {
+		this.emotions = emotions;
 	}
 	
 	

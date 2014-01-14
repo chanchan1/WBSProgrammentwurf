@@ -1,12 +1,58 @@
 package emotions;
 
-public abstract class Emotion {
+import dataTypes.Classification;
+
+public abstract class Emotion implements Comparable<Emotion>{
 	
 	double plausibility;
 	double belief;
 	double doubt;
+	protected Classification name;
 	
 	
+	
+	public Classification getName() {
+		return name;
+	}
+
+
+	public void setName(Classification name) {
+		this.name = name;
+	}
+
+
+	@Override
+	public int compareTo(Emotion b) {
+		// TODO Auto-generated method stub
+		if(this.getPlausibility()<b.getPlausibility())
+		{
+			return 1;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		boolean equals;
+		if (((Emotion)obj).name.equals(name))
+		{
+			equals = true;
+		}
+		else
+		{
+			equals = false;
+		}
+		return equals;
+	}
+
+
+
+
 	public double getPlausibility() {
 		return plausibility;
 	}
