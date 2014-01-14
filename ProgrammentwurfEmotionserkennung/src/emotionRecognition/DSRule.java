@@ -11,7 +11,8 @@ import java.util.Arrays;
 
 import dataTypes.Frame;
 import emotions.*;
-
+//TODO: exceptionhandling mit einbauen
+//TODO: clean up code
 public class DSRule {
 	private final static int [] fear = {1,0,1};
 	private final static int [] surprise = {1,0,0};
@@ -28,7 +29,7 @@ public class DSRule {
 		BasicMeasure res, res2;
 		
 		/* emotions and their alternatives */
-		//TODO: take 2-alternatives into lesser consideration
+		//TODO: possibility: take 2-alternatives into lesser consideration
 		int furrowedBrow[] = generateArray(frame, 0,NUMBER_OF_ALTERNATIVES);
 		int marionetteLines[] = generateArray(frame, 1,NUMBER_OF_ALTERNATIVES);
 		int eyelid[] = generateArray(frame, 2,NUMBER_OF_ALTERNATIVES);

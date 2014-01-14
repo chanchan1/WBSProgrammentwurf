@@ -1,6 +1,7 @@
 package dataTypes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import emotions.Anger;
@@ -24,7 +25,7 @@ public class Frame {
 	Joy joy;
 	Surprise surprise;
 	
-	private ArrayList<Emotion> emotions = new ArrayList<Emotion>();
+	private ArrayList<Emotion> emotions = new ArrayList<Emotion>(Arrays.asList(fear,surprise,anger,joy));
 	
 	Classification emotionClassification;
 	
@@ -32,13 +33,17 @@ public class Frame {
 	
 	public Frame()
 	{
-		
-		getEmotions().add(anger);
-		getEmotions().add(fear);
-		getEmotions().add(joy);
-		getEmotions().add(surprise);
 	}
 	
+	
+	public Frame(int abs_furrowedbrow, int abs_marionettelines, boolean beyelid){
+		super();
+		this.abs_furrowedbrow = abs_furrowedbrow;
+		this.abs_marionettelines = abs_marionettelines;
+		this.beyelid = beyelid;
+	}
+
+
 	public void sortEmotions()
 	{
 		Collections.sort(emotions);
