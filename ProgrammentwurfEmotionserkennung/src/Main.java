@@ -17,8 +17,10 @@ public class Main
 	
 	public static void main(String[] args) 	
 	{
-		readcsvData();
-		calculateBinarValues();
+		
+		//readcsvData();
+		CalculateBinarValues binarCalculator = new CalculateBinarValues();
+		binarCalculator.calculateBinarValues(allFrames);
 		DSRule rules = new DSRule();
 		Classificator classicator = new Classificator();
 		int position = 0;
@@ -42,17 +44,7 @@ public class Main
 		}
 	}
 	
-	public static void calculateBinarValues()
-	{
-		//calculate the binar values of the absolute ones from the .csv file
-				CalculateBinarValues calculator = new CalculateBinarValues();
-				
-				for(Frame frame: allFrames)
-				{
-					frame.setBmarionettelines(calculator.calculatebinarMarionettelines(frame));
-					frame.setBfurrowedbrow(calculator.CalculateBinarValuesFurrowedbrow(frame));
-				}
-	}
+	
 	
 	
 }

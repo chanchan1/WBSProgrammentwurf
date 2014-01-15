@@ -1,5 +1,7 @@
 package dataPreparation;
 
+import java.util.ArrayList;
+
 import dataTypes.Frame;
 
 public class CalculateBinarValues {
@@ -8,8 +10,20 @@ public class CalculateBinarValues {
 	double averagefurrowedbrow = 433.35;
 	double averagemarionettelines = 88.41;
 	
+	public void calculateBinarValues(ArrayList<Frame> allFrames)
+	{
+		//calculate the binar values of the absolute ones from the .csv file
+				
+				for(Frame frame: allFrames)
+				{
+					boolean bmarionettelines = calculatebinarMarionettelines(frame);
+					boolean bfurrowedbrow = calculateBinarValuesFurrowedbrow(frame);
+					frame.setBmarionettelines(bmarionettelines);
+					frame.setBfurrowedbrow(bfurrowedbrow);
+				}
+	}
 	
-	public boolean CalculateBinarValuesFurrowedbrow(Frame frame)
+	public boolean calculateBinarValuesFurrowedbrow(Frame frame)
 	{
 		//procent of the deviation to the average
 		double procent = averagemarionettelines / frame.getAbs_marionettelines();
