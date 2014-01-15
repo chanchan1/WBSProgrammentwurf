@@ -23,7 +23,7 @@ public abstract class Emotion implements Comparable<Emotion>{
 
 	@Override
 	public int compareTo(Emotion b) {
-		// TODO Auto-generated method stub
+		// 
 		if(this.getPlausibility()<b.getPlausibility())
 		{
 			return 1;
@@ -37,7 +37,7 @@ public abstract class Emotion implements Comparable<Emotion>{
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
+		// 
 		boolean equals;
 		if (((Emotion)obj).name.equals(name))
 		{

@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 import dataPreparation.CalculateBinarValues;
@@ -29,9 +30,14 @@ public class Main
 	
 	public static void readcsvData()
 	{
+		String csvFile = "/testData/E_002_a.csv";
 		//read pixel values from .csv file in framelist
-		ReadCSV reader = new ReadCSV();
-		frames = reader.readCSVData();
+		ReadCSV reader = new ReadCSV(csvFile);
+		try {
+			frames = reader.readCSVData();
+		} catch (IOException e) {
+			System.out.println("There was an error with "+csvFile);
+		}
 	}
 	
 	public static void calculateBinarValues()
