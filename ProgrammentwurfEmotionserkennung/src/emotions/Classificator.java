@@ -98,7 +98,7 @@ public class Classificator {
 	{
 		boolean currentEqualsFirst = emotionsEquals(1, (currentPosition-2));
 		boolean currentEqualsSecond = emotionsEquals(1,(currentPosition-1));
-		boolean firstEqualsSecond = allFrames.get(1).getEmotionClassifcation().equals(allFrames.get(2).getEmotionClassifcation());
+		boolean firstEqualsSecond = allFrames.get(1).getEmotionClassification().equals(allFrames.get(2).getEmotionClassification());
 		//Default: emotion is most plausible one without consindering timevariant
 		setClassific(1);
 		
@@ -119,12 +119,12 @@ public class Classificator {
 		//3. Case: second frame other emotion, first and third one the same
 		if(currentEqualsFirst && ! firstEqualsSecond)
 		{
-			setClassificPreviousFrame(2, allFrames.get(1).getEmotionClassifcation());
+			setClassificPreviousFrame(2, allFrames.get(1).getEmotionClassification());
 		}
 		//4. Case: first frame other emotion
 		if(currentEqualsSecond && !(firstEqualsSecond))
 		{
-			setClassificPreviousFrame(1, allFrames.get(2).getEmotionClassifcation());
+			setClassificPreviousFrame(1, allFrames.get(2).getEmotionClassification());
 		}	
 	}
 	
@@ -133,19 +133,19 @@ public class Classificator {
 		boolean currentEqualsThird = emotionsEquals(1, (currentPosition-3));
 		boolean currentEqualsSecond = emotionsEquals(1, (currentPosition-2));;
 		boolean currentEqualsFirst = emotionsEquals(1, (currentPosition-1));;
-		boolean thirdEqualsSecond =;
-		boolean thirdEqualsFirst =;
-		boolean secondEqualsFrist =;
+		boolean thirdEqualsSecond = allFrames.get(3).getEmotionClassification().equals(allFrames.get(2).getEmotionClassification());
+		boolean thirdEqualsFirst = allFrames.get(3).getEmotionClassification().equals(allFrames.get(1).getEmotionClassification());
+		boolean secondEqualsFrist = allFrames.get(1).getEmotionClassification().equals(allFrames.get(2).getEmotionClassification());
 		
 		//Default most plausible Emotion
 		setClassific(1);
 		//1. Case: all same Emotion
-		if(secondEqualsFirst && thirdEqualsSecond && currentEqualsThird)
+		if(secondEqualsFrist && thirdEqualsSecond && currentEqualsThird)
 		{
 			fixEmotion(4);
 		}
 		//2. Case: current frame other emotion -> change as in second frame
-		if(firstEqualsSecond && thirdEqualsSecond &&!(currentEqualsSecond))
+		if(secondEqualsFrist && thirdEqualsSecond &&!(currentEqualsSecond))
 		{
 			prooveCurrentEmotionForChange();
 		}
@@ -153,8 +153,8 @@ public class Classificator {
 		//3. Case current Frame same as first ,in between different -> asumption the classification in between where wrong - > update
 		if (currentEqualsFirst)
 		{
-			setClassificPreviousFrame(3, allFrames.get(1).getEmotionClassifcation());
-			setClassificPreviousFrame(2, allFrames.get(1).getEmotionClassifcation());
+			setClassificPreviousFrame(3, allFrames.get(1).getEmotionClassification());
+			setClassificPreviousFrame(2, allFrames.get(1).getEmotionClassification());
 			fixEmotion(1);
 			fixEmotion(2);
 			fixEmotion(3);

@@ -163,6 +163,16 @@ public class Frame {
 	public void setEmotions(ArrayList<Emotion> emotions) {
 		this.emotions = emotions;
 	}
+
+
+	public boolean isClassificationFixed() {
+		return classificationFixed;
+	}
+
+
+	public void setClassificationFixed(boolean classificationFixed) {
+		this.classificationFixed = classificationFixed;
+	}
 	
 	
 
