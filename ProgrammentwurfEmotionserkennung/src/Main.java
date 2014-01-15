@@ -7,19 +7,24 @@ import dataTypes.Frame;
 
 
 
-public class Main {
+public class Main 
+{
 	
 	static ArrayList<Frame> frames;
-	static ArrayList<Classification> emotions;
 	
 	public static void main(String[] args) 	
 	{
-		readcsvData();
+		generateTestFrames();
+		/*readcsvData();
+		*/
 		calculateBinarValues();
-		calculatePBZ();
-		
-		
-		
+		int position = 0;
+		for (Frame currentFrame: frames)
+		{
+			calculatePlBD(currentFrame)
+			classificate ( allFrames, position);
+			position ++;
+		}
 	}
 	
 	public static void readcsvData()
@@ -31,7 +36,7 @@ public class Main {
 	
 	public static void calculateBinarValues()
 	{
-		//calculate the binar values
+		//calculate the binar values of the absolute ones from the .csv file
 				CalculateBinarValues calculator = new CalculateBinarValues();
 				
 				for(Frame frame: frames)
@@ -41,11 +46,37 @@ public class Main {
 				}
 	}
 	
-	
-	public static void calculatePBZ()
+	public void generateTestFrames()
 	{
-		//use existing code for calculation plausibility, belief, doubt for the emtions anger, fear, joy, surprise
-		//save the results in the objects anger.plausibility etc.
-	}
+		frames = new ArrayList<Frame>();
+		Frame frame1 = new Frame();
+		frame1.setAbs_furrowedbrow = 265;
+		frame1.setAbs_marionettelines = 54;
+		frame1.setbeyelid = true;
+		frames.add(frame1);
 
+		Frame frame2 = new Frame();
+		frame2.setAbs_furrowedbrow = 478;
+		frame2.setAbs_marionettelines = 34;
+		frame2.setbeyelid = true;
+		frames.add(frame2);
+		
+		Frame frame3 = new Frame();
+		frame3.setAbs_furrowedbrow = 265;
+		frame3.setAbs_marionettelines = 123;
+		frame3.setbeyelid = true;
+		frames.add(frame3);
+		
+		Frame frame4 = new Frame();
+		frame4.setAbs_furrowedbrow = 567;
+		frame4.setAbs_marionettelines = 125;
+		frame4.setbeyelid = true;
+		frames.add(frame4);
+		
+		Frame frame5 = new Frame();
+		frame5.setAbs_furrowedbrow = 345;
+		frame5.setAbs_marionettelines = 54;
+		frame5.setbeyelid = true;
+		frames.add(frame5);
+	}
 }

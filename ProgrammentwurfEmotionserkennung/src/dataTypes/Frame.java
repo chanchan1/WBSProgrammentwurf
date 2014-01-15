@@ -18,6 +18,8 @@ public class Frame {
 	boolean bmarionettelines;
 	boolean beyelid;
 	
+	boolean classificationFixed = false;
+	
 	//Emotions
 	Anger anger;
 	Fear fear;
