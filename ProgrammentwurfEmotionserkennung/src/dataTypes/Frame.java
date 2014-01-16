@@ -20,14 +20,27 @@ public class Frame {
 	boolean beyelid;
 	
 	boolean classificationFixed = false;
+	boolean classificationChanged = false;
 	
+	public boolean isClassificationChanged() {
+		return classificationChanged;
+	}
+
+
+	public void setClassificationChanged(boolean classificationChanged) {
+		this.classificationChanged = classificationChanged;
+	}
+
+
 	//Emotions
-	Anger anger;
-	Fear fear;
-	Joy joy;
-	Surprise surprise;
+	Anger anger = new Anger();
+	Fear fear = new Fear();
+	Joy joy = new Joy();
+	Surprise surprise = new Surprise();
 	
-	private ArrayList<Emotion> emotions = new ArrayList<Emotion>(Arrays.asList(fear,surprise,anger,joy));
+	//TODO: Mergen, dass Emotionen in der Liste eine Referenz auf die anderen
+	private ArrayList<Emotion> emotions = new ArrayList<Emotion>(Arrays.asList(anger, fear, joy, surprise));
+
 	
 	Classification emotionClassification;
 	
@@ -112,7 +125,7 @@ public class Frame {
 		this.beyelid = beyelid;
 	}
 
-
+	
 	public Anger getAnger() {
 		return anger;
 	}
@@ -151,6 +164,7 @@ public class Frame {
 	public void setSurprise(Surprise surprise) {
 		this.surprise = surprise;
 	}
+	
 
 
 

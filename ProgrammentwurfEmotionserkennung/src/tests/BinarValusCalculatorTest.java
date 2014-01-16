@@ -14,12 +14,12 @@ import dataTypes.Frame;
 
 public class BinarValusCalculatorTest
 {
-	ArrayList<Frame> allFrames = new ArrayList<Frame>();
+	static  ArrayList<Frame> allFrames = new ArrayList<Frame>();
 	
 	@Test
 	public final void testBinarCalculationFurrowedbrowFalse() throws IOException
 	{
-		generatTestFrames();
+		readcsvData();
 		CalculateBinarValues binarCalculator = new CalculateBinarValues();
 		binarCalculator.calculateBinarValues(allFrames);
 		assertEquals(allFrames.get(1).isBfurrowedbrow(), false);
@@ -27,16 +27,16 @@ public class BinarValusCalculatorTest
 	@Test
 	public final void testBinarCalculationFurrowedbrowTrue() throws IOException
 	{
-		generatTestFrames();
+		readcsvData();
 		CalculateBinarValues binarCalculator = new CalculateBinarValues();
 		binarCalculator.calculateBinarValues(allFrames);
-		assertEquals(allFrames.get(4).isBfurrowedbrow(), true);
+		assertEquals(allFrames.get(5).isBfurrowedbrow(), true);
 	}
 	
 	@Test
 	public final void testBinarCalculationMarionettlinesTrue() throws IOException
 	{
-		generatTestFrames();
+		readcsvData();
 		CalculateBinarValues binarCalculator = new CalculateBinarValues();
 		binarCalculator.calculateBinarValues(allFrames);
 		assertEquals(allFrames.get(1).isBmarionettelines(), true);
@@ -44,7 +44,7 @@ public class BinarValusCalculatorTest
 	@Test
 	public final void testBinarCalculationMarionettlinesFalse() throws IOException
 	{
-		generatTestFrames();
+		readcsvData();
 		CalculateBinarValues binarCalculator = new CalculateBinarValues();
 		binarCalculator.calculateBinarValues(allFrames);
 		assertEquals(allFrames.get(5).isBmarionettelines(), false);
@@ -72,4 +72,17 @@ public class BinarValusCalculatorTest
 		allFrames.add(frame6);
 	}
 
+	
+	
+	public static void readcsvData()
+	{
+		String csvFile = "testData/E_002_a.csv";
+		//read pixel values from .csv file in framelist
+		ReadCSV reader = new ReadCSV(csvFile);
+		try {
+			allFrames = reader.readCSVData();
+		} catch (IOException e) {
+			System.out.println("There was an error with "+csvFile);
+		}
+	}
 }

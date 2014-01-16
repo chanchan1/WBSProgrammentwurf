@@ -114,6 +114,7 @@ public class DSRule {
 			System.out.format("[%d] : %5.3f  |  %5.3f  | %5.3f ", i,
 					plausibility(res2, i), singleBelief(res2, i),
 					singleDoubt(res2, i));
+			
 			switch (i) {
 				case 0:
 					System.out.print("-- fear \n");
@@ -135,6 +136,8 @@ public class DSRule {
 					frame.setJoy(new Joy(plausibility(res2, i), singleBelief(res2, i),
 							singleDoubt(res2, i)));
 					break;
+					
+				
 			}
 		}
 	}
