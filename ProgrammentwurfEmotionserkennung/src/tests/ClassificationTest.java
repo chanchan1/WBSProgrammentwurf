@@ -36,10 +36,7 @@ public class ClassificationTest {
 		}
 	}
 	
-	@Test
-	public final void positiveTest() throws IOException{
-		int i = 0;
-	}
+	
 	
 
 	
