@@ -27,10 +27,10 @@ public class Main
 		for (Frame currentFrame: allFrames)
 		{
 			rules.calculatePlBD(currentFrame);
-			adjustPlausibility(currentFrame);
 			classicator.classificate ( allFrames, position);
 			position ++;
 		}
+		
 		position = 1;
 		for (Frame currentFrame: allFrames)
 		{
@@ -39,11 +39,12 @@ public class Main
 			System.out.println (currentFrame.getEmotionClassification());
 			position ++;
 		}
+		classicator.checkClassicication(allFrames);
 	}
 	
 	public static void readcsvData()
 	{
-		String csvFile = "testData/E_002_a.csv";
+		String csvFile = "testData/E_002.csv";
 		//read pixel values from .csv file in framelist
 		ReadCSV reader = new ReadCSV(csvFile);
 		try {
@@ -53,14 +54,7 @@ public class Main
 		}
 	}
 	
-	//TODO: Delete wenn mapping funktioniert
-	public static void adjustPlausibility(Frame currentFrame)
-	{
-		currentFrame.getEmotions().get(0).setPlausibility(currentFrame.getAnger().getPlausibility());
-		currentFrame.getEmotions().get(1).setPlausibility(currentFrame.getFear().getPlausibility());
-		currentFrame.getEmotions().get(2).setPlausibility(currentFrame.getJoy().getPlausibility());
-		currentFrame.getEmotions().get(3).setPlausibility(currentFrame.getSurprise().getPlausibility());
-	}
+	
 	
 	
 	

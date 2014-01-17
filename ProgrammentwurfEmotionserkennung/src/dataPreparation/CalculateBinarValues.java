@@ -6,7 +6,7 @@ import dataTypes.Frame;
 
 public class CalculateBinarValues {
 	
-	//average value for all test data for all emotions of the furrowedbrow
+	//average value for all test data for all emotions of the furrowedbrow and marionettelines
 	double averagefurrowedbrow = 433.35;
 	double averagemarionettelines = 88.41;
 	
@@ -22,6 +22,7 @@ public class CalculateBinarValues {
 					frame.setBfurrowedbrow(bfurrowedbrow);
 				}
 	}
+	
 	
 	public boolean calculateBinarValuesFurrowedbrow(Frame frame)
 	{
