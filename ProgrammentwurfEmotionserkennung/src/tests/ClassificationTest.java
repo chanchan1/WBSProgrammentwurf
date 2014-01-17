@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import dataPreparation.CalculateBinarValues;
+import dataPreparation.CalculateBinaryValues;
 import dataPreparation.ReadCSV;
 import dataTypes.Frame;
 import emotionRecognition.DSRule;
@@ -22,16 +22,12 @@ public class ClassificationTest {
 	public void prepare()
 	{
 		readcsvData();
-		CalculateBinarValues binarCalculator = new CalculateBinarValues();
-		binarCalculator.calculateBinarValues(allFrames);
-		DSRule rules = new DSRule();
-		Classificator classicator = new Classificator();
-		int position = 0;
+		CalculateBinaryValues.calculateBinaryValues(allFrames);
+		Classificator classicator = new Classificator(allFrames);
 		for (Frame currentFrame: allFrames)
 		{
-			rules.calculatePlBD(currentFrame);
-			classicator.classificate ( allFrames, position);
-			position ++;
+			DSRule.calculatePlBD(currentFrame);
+			classicator.classificate ( currentFrame);
 			System.out.println(currentFrame.getEmotionClassification());
 		}
 	}

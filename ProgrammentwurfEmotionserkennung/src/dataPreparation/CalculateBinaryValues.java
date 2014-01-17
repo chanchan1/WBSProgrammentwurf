@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import dataTypes.Frame;
 
-public class CalculateBinarValues {
+public class CalculateBinaryValues {
 	
 	//average value for all test data for all emotions of the furrowedbrow and marionettelines
-	double averagefurrowedbrow = 433.35;
-	double averagemarionettelines = 88.41;
+	private static final double averagefurrowedbrow = 433.35;
+	private static final double averagemarionettelines = 88.41;
 	
 	/**
 	 * Calculate from the absolute Value of the furrowed brow and marionette lines the binary values (big = 1, little = 0)
@@ -16,14 +16,14 @@ public class CalculateBinarValues {
 	 * Calculation for each Frame and is setting the binary attributes
 	 * @param Array allFrames, Calculation for each Frame in this array 
 	 */
-	public void calculateBinarValues(ArrayList<Frame> allFrames)
+	public static void calculateBinaryValues(ArrayList<Frame> allFrames)
 	{
 		//calculate the binar values of the absolute ones from the .csv file
 				
 				for(Frame frame: allFrames)
 				{
-					boolean bmarionettelines = calculatebinarMarionettelines(frame);
-					boolean bfurrowedbrow = calculateBinarValuesFurrowedbrow(frame);
+					boolean bmarionettelines = calculateBinaryMarionettelines(frame);
+					boolean bfurrowedbrow = calculateBinaryValuesFurrowedbrow(frame);
 					frame.setBmarionettelines(bmarionettelines);
 					frame.setBfurrowedbrow(bfurrowedbrow);
 				}
@@ -36,7 +36,7 @@ public class CalculateBinarValues {
 	 * @param frame from which the binary value of the furrowed brow is calculated
 	 * @return the boolean value of the furrowed brow (true = big, false = little)
 	 */
-	public boolean calculateBinarValuesFurrowedbrow(Frame frame)
+	private static boolean calculateBinaryValuesFurrowedbrow(Frame frame)
 	{
 		//percentage of the deviation to the average
 		double procent = averagemarionettelines / frame.getAbs_marionettelines();
@@ -57,12 +57,12 @@ public class CalculateBinarValues {
 	
 	/**
 	 * Change the absolute Value of the marionette lines  of one frame into a binary value (big, little)
-	 * Scales thefurrowed brow to the average value of the furrowed brow and scales furrowed brow also
+	 * Scales the furrowed brow to the average value of the furrowed brow and scales furrowed brow also
 	 * if the scaled marionette lines are smaller the average of the marionette lines, binary value is false (little) else, true(big)
 	 * @param frame from which the binary value of the marionette lines is calculated
 	 * @return the boolean value of the marionette lines (true = big, false = little)
 	 */
-	public boolean calculatebinarMarionettelines(Frame frame)
+	private static boolean calculateBinaryMarionettelines(Frame frame)
 	{
 		//percentage of the deviation to the average
 				double procent = averagefurrowedbrow / frame.getAbs_furrowedbrow();

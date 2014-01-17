@@ -1,6 +1,5 @@
 package emotions;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 import dataTypes.Classification;
@@ -14,9 +13,9 @@ public class Classificator {
 	int currentPosition;
 	Classification classific = Classification.Anger;
 	
-	public Classificator()
+	public Classificator(ArrayList<Frame> allFrames)
 	{
-		
+		this.allFrames = allFrames;
 	}
 	
 	/**
@@ -25,13 +24,15 @@ public class Classificator {
 	 * @param allFrames 
 	 * @param currentPosition in the array allFrames, which frame should be classicated
 	 */
-	public void classificate(ArrayList<Frame> allFrames, int currentPosition)
+	public void classificate(Frame currentFrame)
 	{
-		this.allFrames = allFrames;
-		currentFrame = allFrames.get(currentPosition);
-		this.currentPosition = currentPosition;		
+		
+		this.currentFrame = currentFrame;
+		this.currentPosition = allFrames.indexOf(currentFrame);		
+		
 		adjustPlausibility(currentFrame);
 		currentFrame.sortEmotions();
+		
 		//for considering the variation in time of the classification always the three previous frames are considered
 		//special cases: the first three frames (there are not the previous frames)
 		switch(currentPosition)

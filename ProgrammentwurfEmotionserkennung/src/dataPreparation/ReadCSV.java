@@ -33,7 +33,7 @@ public class ReadCSV {
 			String[] columns = line.split(CSV_SEPERATOR); // column =>
 															// {Frame,Stirnfalten,Mundfalte,Lid}
 
-			// read all frames
+			// read all absolute properties per frames
 			while ((line = br.readLine()) != null) {
 				String[] properties = line.split(CSV_SEPERATOR);// =>
 																// {Frame,Stirnfalten,Mundfalte,Lid}

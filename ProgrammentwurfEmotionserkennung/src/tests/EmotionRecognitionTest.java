@@ -8,7 +8,6 @@ import org.junit.Test;
 import dataTypes.Frame;
 
 import emotionRecognition.DSRule;
-import emotionRecognition.DSRuleOriginal;
 
 public class EmotionRecognitionTest {
 
@@ -36,12 +35,6 @@ public class EmotionRecognitionTest {
 		DSRule.calculatePlBD(frame);
 		Assert.assertEquals(frame.getSurprise().getPlausibility(),1.0d,0.000001d);
 		
-	}
-	
-	@Test
-	public final void testOriginalDempster(){
-		new DSRuleOriginal().calculate(null);
-		Assert.assertTrue(true);
 	}
 
 }

@@ -1,9 +1,8 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
-import dataPreparation.CalculateBinarValues;
+import dataPreparation.CalculateBinaryValues;
 import dataPreparation.ReadCSV;
-import dataTypes.Classification;
 import dataTypes.Frame;
 import emotionRecognition.DSRule;
 import emotions.Classificator;
@@ -15,30 +14,26 @@ public class Main
 	
 	static ArrayList<Frame> allFrames = new ArrayList<Frame>();
 	
-	public static void main(String[] args) 	
-	{
-		
+	public static void main(String[] args){
+
 		readcsvData();
-		CalculateBinarValues binarCalculator = new CalculateBinarValues();
-		binarCalculator.calculateBinarValues(allFrames);
-		DSRule rules = new DSRule();
-		Classificator classicator = new Classificator();
-		int position = 0;
-		for (Frame currentFrame: allFrames)
-		{
-			rules.calculatePlBD(currentFrame);
-			classicator.classificate ( allFrames, position);
-			position ++;
+		CalculateBinaryValues.calculateBinaryValues(allFrames);
+		Classificator classificator = new Classificator(allFrames);
+		for (Frame currentFrame : allFrames) {
+			DSRule.calculatePlBD(currentFrame);
+			classificator.classificate(currentFrame);
 		}
-		
-		//output of the classifcation of all Frames
-		position = 1;
+
+		// output of the classification of all Frames
+		generateOutput();
+	}
+
+	private static void generateOutput(){
 		for (Frame currentFrame: allFrames)
 		{
-			System.out.print(position);
+			System.out.print(allFrames.indexOf(currentFrame)+1);
 			System.out.print(". Frame:  ");
 			System.out.println (currentFrame.getEmotionClassification());
-			position ++;
 		}
 	}
 	

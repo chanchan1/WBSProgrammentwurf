@@ -1,9 +1,5 @@
 package emotionRecognition;
 
-/* ---------------------------------------------------------------------- */
-/* Test program for the dempster shafer rule                              */
-/* ---------------------------------------------------------------------- */
-
 import static emotionRecognition.Dempster.*;
 
 import java.util.ArrayList;
@@ -11,28 +7,35 @@ import java.util.Arrays;
 
 import dataTypes.Frame;
 import emotions.*;
-//TODO: exceptionhandling mit einbauen
-//TODO: clean up code
-public class DSRule {
-	private final static int [] fear = {1,0,1};
-	private final static int [] surprise = {1,0,0};
-	private final static int [] anger = {0,2,1};
-	private final static int [] joy = {2,1,0};
-	private final static ArrayList<int[]> emotions = new ArrayList<>(Arrays.asList(fear,surprise,anger,joy));
-	
-	public static void calculatePlBD(Frame	frame){
 
-		final int NUMBER_OF_ALTERNATIVES = 4;
+public class DSRule {
+
+	private final static int				NUMBER_OF_ALTERNATIVES	= 4;
+	private final static int[]				fear					= {1, 0, 1};
+	private final static int[]				surprise				= {1, 0, 0};
+	private final static int[]				anger					= {0, 2, 1};
+	private final static int[]				joy						= {2, 1, 0};
+	private final static ArrayList<int[]>	emotions				= new ArrayList<>(Arrays.asList(fear, surprise, anger, joy));
+
+	/**
+	 * calculates and sets the plausibility, belief and doubt of the given frame
+	 * for the emotions fear, surprise, anger and joy.
+	 * 
+	 * @param frame
+	 *            for which plausibility, belief and doubt are calculated and
+	 *            set
+	 */
+	public static void calculatePlBD(Frame frame){
+
 		BasicMeasure mLFB = new BasicMeasure();
 		BasicMeasure mLML = new BasicMeasure();
 		BasicMeasure mEL = new BasicMeasure();
 		BasicMeasure res, res2;
-		
+
 		/* emotions and their alternatives */
-		//TODO: possibility: take 2-alternatives into lesser consideration
-		int furrowedBrow[] = generateArray(frame, 0,NUMBER_OF_ALTERNATIVES);
-		int marionetteLines[] = generateArray(frame, 1,NUMBER_OF_ALTERNATIVES);
-		int eyelid[] = generateArray(frame, 2,NUMBER_OF_ALTERNATIVES);
+		int furrowedBrow[] = generateSubsetArray(frame, 0);
+		int marionetteLines[] = generateSubsetArray(frame, 1);
+		int eyelid[] = generateSubsetArray(frame, 2);
 
 		Set furrowedBrowSet, marionetteLinesSet, eyelidSet;
 
@@ -69,17 +72,63 @@ public class DSRule {
 		res2 = getAccumulatedMeasure(res, mEL);
 		printBasicMeasure(res2);
 
-		/* plausibilities */
-		generateOutputAndSetPlausibilities(frame, NUMBER_OF_ALTERNATIVES, res2);
-		
+		/* set plausibilities, belief and doubt */
+		setPlBD(frame, res2);
+		generateOutput(res2);
 
 	}
 
-	private static int[] generateArray(Frame	frame, int property, int NUMBER_OF_ALTERNATIVES){
-		int[] ret = new int [NUMBER_OF_ALTERNATIVES];
+	/**
+	 * sets the the plausibility, belief and doubt of each emotion stated by the
+	 * basic measure m for the given frame
+	 * 
+	 * @param frame
+	 * @param m
+	 */
+	private static void setPlBD(Frame frame, BasicMeasure m){
+		for (int i = 0; i < NUMBER_OF_ALTERNATIVES; i++) {
+			switch (i) {
+				case 0:
+					System.out.print("-- fear \n");
+					frame.setFear(new Fear(plausibility(m, i), singleBelief(m,
+							i), singleDoubt(m, i)));
+					break;
+				case 1:
+					System.out.print("-- surprise \n");
+					frame.setSurprise(new Surprise(plausibility(m, i),
+							singleBelief(m, i), singleDoubt(m, i)));
+					break;
+				case 2:
+					System.out.print("-- anger \n");
+					frame.setAnger(new Anger(plausibility(m, i), singleBelief(
+							m, i), singleDoubt(m, i)));
+					break;
+				case 3:
+					System.out.print("-- joy  \n");
+					frame.setJoy(new Joy(plausibility(m, i),
+							singleBelief(m, i), singleDoubt(m, i)));
+					break;
+
+			}
+		}
+	}
+
+	/**
+	 * generates an array that represents a subset of emotions which correspond
+	 * to the frame's property. Is the frame's property set, are all emotions
+	 * select which have the property set, too. If not, all emotions are
+	 * selected that do not have that property. Unknown properties (indicated by
+	 * 2) are selected in both cases.
+	 * 
+	 * @param frame
+	 * @param property
+	 * @return the generated array
+	 */
+	private static int[] generateSubsetArray(Frame frame, int property){
+		int[] ret = new int[NUMBER_OF_ALTERNATIVES];
 		int i = 0;
 		int frameProperty = 0;
-		
+
 		switch (property) {
 			case 0:
 				frameProperty = frame.isBfurrowedbrow() ? 1 : 0;
@@ -91,54 +140,34 @@ public class DSRule {
 				frameProperty = frame.isBeyelid() ? 1 : 0;
 				break;
 		}
-		
-		for(int[] emotion : emotions){
+
+		for (int[] emotion : emotions) {
 			int value = 0;
-			if(emotion[property]==2||emotion[property]==frameProperty ){
-				value=1;
+			// select the emotion, if the property is 2 or the same as the
+			// frame's
+			if (emotion[property] == 2 || emotion[property] == frameProperty) {
+				value = 1;
 			}
-			ret[i]=value;
+			ret[i] = value;
 			i++;
 		}
-		
+
 		return ret;
 	}
 
-	private static void generateOutputAndSetPlausibilities(Frame frame, final int NUMBER_OF_ALTERNATIVES,
-			BasicMeasure res2){
+	/**
+	 * prints plausibility, belief and doubt of the measure to the console
+	 * 
+	 * @param m
+	 */
+	private static void generateOutput(BasicMeasure m){
 		int i;
 		System.out.println(" Nr : Pl(x)  |  B(x)   |  Z(x) ");
 
 		for (i = 0; i < NUMBER_OF_ALTERNATIVES; i++) {
 
 			System.out.format("[%d] : %5.3f  |  %5.3f  | %5.3f ", i,
-					plausibility(res2, i), singleBelief(res2, i),
-					singleDoubt(res2, i));
-			
-			switch (i) {
-				case 0:
-					System.out.print("-- fear \n");
-					frame.setFear(new Fear(plausibility(res2, i), singleBelief(res2, i),
-							singleDoubt(res2, i)));
-					break;
-				case 1:
-					System.out.print("-- surprise \n");
-					frame.setSurprise(new Surprise(plausibility(res2, i), singleBelief(res2, i),
-							singleDoubt(res2, i)));
-					break;
-				case 2:
-					System.out.print("-- anger \n");
-					frame.setAnger(new Anger(plausibility(res2, i), singleBelief(res2, i),
-							singleDoubt(res2, i)));
-					break;
-				case 3:
-					System.out.print("-- joy  \n");
-					frame.setJoy(new Joy(plausibility(res2, i), singleBelief(res2, i),
-							singleDoubt(res2, i)));
-					break;
-					
-				
-			}
+					plausibility(m, i), singleBelief(m, i), singleDoubt(m, i));
 		}
 	}
 

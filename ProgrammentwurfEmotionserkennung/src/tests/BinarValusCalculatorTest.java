@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import dataPreparation.CalculateBinarValues;
+import dataPreparation.CalculateBinaryValues;
 import dataPreparation.ReadCSV;
 import dataTypes.Frame;
 
@@ -20,16 +20,16 @@ public class BinarValusCalculatorTest
 	public final void testBinarCalculationFurrowedbrowFalse() throws IOException
 	{
 		readcsvData();
-		CalculateBinarValues binarCalculator = new CalculateBinarValues();
-		binarCalculator.calculateBinarValues(allFrames);
+		CalculateBinaryValues binarCalculator = new CalculateBinaryValues();
+		binarCalculator.calculateBinaryValues(allFrames);
 		assertEquals(allFrames.get(1).isBfurrowedbrow(), false);
 	}
 	@Test
 	public final void testBinarCalculationFurrowedbrowTrue() throws IOException
 	{
 		readcsvData();
-		CalculateBinarValues binarCalculator = new CalculateBinarValues();
-		binarCalculator.calculateBinarValues(allFrames);
+		CalculateBinaryValues binarCalculator = new CalculateBinaryValues();
+		binarCalculator.calculateBinaryValues(allFrames);
 		assertEquals(allFrames.get(5).isBfurrowedbrow(), true);
 	}
 	
@@ -37,16 +37,16 @@ public class BinarValusCalculatorTest
 	public final void testBinarCalculationMarionettlinesTrue() throws IOException
 	{
 		readcsvData();
-		CalculateBinarValues binarCalculator = new CalculateBinarValues();
-		binarCalculator.calculateBinarValues(allFrames);
+		CalculateBinaryValues binarCalculator = new CalculateBinaryValues();
+		binarCalculator.calculateBinaryValues(allFrames);
 		assertEquals(allFrames.get(1).isBmarionettelines(), true);
 	}
 	@Test
 	public final void testBinarCalculationMarionettlinesFalse() throws IOException
 	{
 		readcsvData();
-		CalculateBinarValues binarCalculator = new CalculateBinarValues();
-		binarCalculator.calculateBinarValues(allFrames);
+		CalculateBinaryValues binarCalculator = new CalculateBinaryValues();
+		binarCalculator.calculateBinaryValues(allFrames);
 		assertEquals(allFrames.get(5).isBmarionettelines(), false);
 	}
 	

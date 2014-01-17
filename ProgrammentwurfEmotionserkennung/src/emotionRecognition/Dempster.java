@@ -83,10 +83,8 @@ public class Dempster {
 
 		for (i = 0; i < ret.size; i++) {
 	/* correcting invalid flags: if >= 1 assume 1 else assume 0           */
-			if (a[i] == 1)
+			if (a[i] >= 1)
 				ret.alt[i] = 1;
-			else if(a[i]>=1)
-				 ret.alt[i] = 2;
 				else ret.alt[i] = 0;
 		}
 
