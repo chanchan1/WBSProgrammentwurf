@@ -17,15 +17,16 @@ public class Main
 	public static void main(String[] args){
 
 		readcsvData();
-		CalculateBinaryValues.calculateBinaryValues(allFrames);
-		Classificator classificator = new Classificator(allFrames);
-		for (Frame currentFrame : allFrames) {
-			DSRule.calculatePlBD(currentFrame);
-			classificator.classificate(currentFrame);
+		if (allFrames.size() > 0) {
+			CalculateBinaryValues.calculateBinaryValues(allFrames);
+			Classificator classificator = new Classificator(allFrames);
+			for (Frame currentFrame : allFrames) {
+				DSRule.calculatePlBD(currentFrame);
+				classificator.classificate(currentFrame);
+			}
+			// output of the classification of all Frames
+			generateOutput();
 		}
-
-		// output of the classification of all Frames
-		generateOutput();
 	}
 
 	private static void generateOutput(){
