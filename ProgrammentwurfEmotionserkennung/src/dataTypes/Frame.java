@@ -22,15 +22,7 @@ public class Frame {
 	boolean classificationFixed = false;
 	boolean classificationChanged = false;
 	
-	public boolean isClassificationChanged() {
-		return classificationChanged;
-	}
-
-
-	public void setClassificationChanged(boolean classificationChanged) {
-		this.classificationChanged = classificationChanged;
-	}
-
+	Classification emotionClassification;
 
 	//Emotions
 	Anger anger = new Anger();
@@ -38,12 +30,7 @@ public class Frame {
 	Joy joy = new Joy();
 	Surprise surprise = new Surprise();
 	
-	//TODO: Mergen, dass Emotionen in der Liste eine Referenz auf die anderen
 	private ArrayList<Emotion> emotions = new ArrayList<Emotion>(Arrays.asList(anger, fear, joy, surprise));
-
-	
-	Classification emotionClassification;
-	
 	
 	
 	public Frame()
@@ -59,13 +46,25 @@ public class Frame {
 		this.beyelid = beyelid;
 	}
 
-
+	/**
+	 * sort Emotions accordion to their plausibilities, first emotion with the highest plausibility
+	 */
 	public void sortEmotions()
 	{
 		Collections.sort(emotions);
 	}
 
 
+	//Getters and Setters
+	public boolean isClassificationChanged() {
+		return classificationChanged;
+	}
+
+
+	public void setClassificationChanged(boolean classificationChanged) {
+		this.classificationChanged = classificationChanged;
+	}
+	
 	public int getAbs_furrowedbrow() {
 		return abs_furrowedbrow;
 	}

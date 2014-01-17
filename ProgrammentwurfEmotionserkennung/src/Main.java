@@ -31,20 +31,20 @@ public class Main
 			position ++;
 		}
 		
+		//output of the classifcation of all Frames
 		position = 1;
 		for (Frame currentFrame: allFrames)
 		{
 			System.out.print(position);
-			System.out.print("  ");
+			System.out.print(". Frame:  ");
 			System.out.println (currentFrame.getEmotionClassification());
 			position ++;
 		}
-		classicator.checkClassicication(allFrames);
 	}
 	
 	public static void readcsvData()
 	{
-		String csvFile = "testData/E_002.csv";
+		String csvFile = "testData/E_002_a.csv";
 		//read pixel values from .csv file in framelist
 		ReadCSV reader = new ReadCSV(csvFile);
 		try {
