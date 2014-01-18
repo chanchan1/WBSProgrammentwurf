@@ -1,9 +1,8 @@
-
+package dataPreparation;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import dataPreparation.*;
 import dataTypes.Frame;
 import emotionRecognition.DSRule;
 import emotions.Classificator;

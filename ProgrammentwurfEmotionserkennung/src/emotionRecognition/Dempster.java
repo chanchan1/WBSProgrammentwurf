@@ -185,7 +185,6 @@ public class Dempster {
 
 	public static void addMeasureEntry(BasicMeasure m, Set p /* passbyvalue */, float v) {
 		BasicMeasure tmp;
-		int i;
 
 		tmp = m;
 
@@ -385,17 +384,6 @@ public class Dempster {
 		return (ret != 0);
 	}
 
-	private static Set invert(Set p) {
-		Set ret = new Set();
-		int i;
-
-		ret.size = p.size;
-		for (i = 0; i < p.size; i++)
-			ret.alt[i] = (p.alt[i] == 0) ? 1 : 0;
-
-		return ret;
-	}
-
 	private static float belief(BasicMeasure m, Set p) {
 		int i, lim;
 		Set pt = new Set();
@@ -470,27 +458,6 @@ public class Dempster {
 			deleteBasicMeasure(m.next);
 			//free(m);
 			m.a = null;
-		}
-	}
-
-	/* ---------------------------------------------------------------------- */
-	/* Function name : printBasicMeasure                                      */
-	/* ---------------------------------------------------------------------- */
-	/* Description :                                                          */
-	/* Output of a printed version of the measurement (screen)                */
-	/* ---------------------------------------------------------------------- */
-	public static void printBasicMeasure(BasicMeasure m) {
-		BasicMeasure tmp;
-		int i;
-
-		System.out.println("Basic Measure:");
-		tmp = m;
-		while (tmp != null) {
-			System.out.print("m([");
-			for (i = 0; i < tmp.a.size; i++)
-				System.out.format("%1d", tmp.a.alt[i]);
-			System.out.format("]) = %7.3f\n", tmp.value);
-			tmp = tmp.next;
 		}
 	}
 

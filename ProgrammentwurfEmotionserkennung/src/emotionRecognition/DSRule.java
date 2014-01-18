@@ -50,27 +50,20 @@ public class DSRule {
 		/* defining measure large furrowed brow */
 		createBasicMeasure(mLFB, NUMBER_OF_ALTERNATIVES);
 		addMeasureEntry(mLFB, furrowedBrowSet.copy(), 0.8f);
-		printBasicMeasure(mLFB);
 
 		/* defining measure large marionette lines */
 		createBasicMeasure(mLML, NUMBER_OF_ALTERNATIVES);
 		addMeasureEntry(mLML, marionetteLinesSet.copy(), 0.8f);
-		printBasicMeasure(mLML);
 
-		System.out.println("accumulate ...");
 		/* create new measure by accumulation */
 		res = getAccumulatedMeasure(mLFB, mLML);
-		printBasicMeasure(res);
 
 		/* define measure eye lid */
 		createBasicMeasure(mEL, NUMBER_OF_ALTERNATIVES);
 		addMeasureEntry(mEL, eyelidSet.copy(), 0.8f);
-		printBasicMeasure(mEL);
 
-		System.out.println("accumulate ...");
 		/* create new measure by accumulation */
 		res2 = getAccumulatedMeasure(res, mEL);
-		printBasicMeasure(res2);
 
 		/* set plausibilities, belief and doubt */
 		setPlBD(frame, res2);
@@ -86,30 +79,26 @@ public class DSRule {
 	 * @param m
 	 */
 	private static void setPlBD(Frame frame, BasicMeasure m){
+		Emotion emotion = null;
 		for (int i = 0; i < NUMBER_OF_ALTERNATIVES; i++) {
 			switch (i) {
 				case 0:
-					System.out.print("-- fear \n");
-					frame.setFear(new Fear(plausibility(m, i), singleBelief(m,
-							i), singleDoubt(m, i)));
+					emotion = frame.getFear();
 					break;
 				case 1:
-					System.out.print("-- surprise \n");
-					frame.setSurprise(new Surprise(plausibility(m, i),
-							singleBelief(m, i), singleDoubt(m, i)));
+					emotion = frame.getSurprise();
 					break;
 				case 2:
-					System.out.print("-- anger \n");
-					frame.setAnger(new Anger(plausibility(m, i), singleBelief(
-							m, i), singleDoubt(m, i)));
+					emotion = frame.getAnger();
 					break;
 				case 3:
-					System.out.print("-- joy  \n");
-					frame.setJoy(new Joy(plausibility(m, i),
-							singleBelief(m, i), singleDoubt(m, i)));
+					emotion = frame.getJoy();
 					break;
 
 			}
+			emotion.setPlausibility((double)plausibility(m, i));
+			emotion.setBelief((double)singleBelief(m, i));
+			emotion.setDoubt((double)singleDoubt(m, i));
 		}
 	}
 
@@ -168,6 +157,22 @@ public class DSRule {
 
 			System.out.format("[%d] : %5.3f  |  %5.3f  | %5.3f ", i,
 					plausibility(m, i), singleBelief(m, i), singleDoubt(m, i));
+			
+			switch (i) {
+				case 0:
+					System.out.print("-- fear \n");
+					break;
+				case 1:
+					System.out.print("-- surprise \n");
+					break;
+				case 2:
+					System.out.print("-- anger \n");
+					break;
+				case 3:
+					System.out.print("-- joy  \n");
+					break;
+
+			}
 		}
 	}
 
