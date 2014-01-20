@@ -67,7 +67,6 @@ public class DSRule {
 
 		/* set plausibilities, belief and doubt */
 		setPlBD(frame, res2);
-		generateOutput(res2);
 
 	}
 
@@ -144,36 +143,6 @@ public class DSRule {
 		return ret;
 	}
 
-	/**
-	 * prints plausibility, belief and doubt of the measure to the console
-	 * 
-	 * @param m
-	 */
-	private static void generateOutput(BasicMeasure m){
-		int i;
-		System.out.println(" Nr : Pl(x)  |  B(x)   |  Z(x) ");
-
-		for (i = 0; i < NUMBER_OF_ALTERNATIVES; i++) {
-
-			System.out.format("[%d] : %5.3f  |  %5.3f  | %5.3f ", i,
-					plausibility(m, i), singleBelief(m, i), singleDoubt(m, i));
-			
-			switch (i) {
-				case 0:
-					System.out.print("-- fear \n");
-					break;
-				case 1:
-					System.out.print("-- surprise \n");
-					break;
-				case 2:
-					System.out.print("-- anger \n");
-					break;
-				case 3:
-					System.out.print("-- joy  \n");
-					break;
-
-			}
-		}
-	}
+	
 
 }
