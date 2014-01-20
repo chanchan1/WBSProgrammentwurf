@@ -24,7 +24,6 @@ public class EmotionRecognitionTest {
 		
 	}
 	
-	//TODO:Test with other frame properties
 	@Test
 	public final void testCalculateSurprise() {
 		

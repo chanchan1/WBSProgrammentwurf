@@ -10,7 +10,6 @@ public class Joy extends Emotion
 		name = Classification.Joy;
 	}
 	public Joy() {
-		// TODO Auto-generated constructor stub
 		name = Classification.Joy;
 	}
 }

@@ -30,7 +30,7 @@ public class Classificator {
 		this.currentFrame = currentFrame;
 		this.currentPosition = allFrames.indexOf(currentFrame);		
 		
-		adjustPlausibility(currentFrame);
+		//adjustPlausibility(currentFrame);
 		currentFrame.sortEmotions();
 		
 		//for considering the variation in time of the classification always the three previous frames are considered
@@ -278,17 +278,6 @@ public class Classificator {
 		return currentFrame.getEmotions().get(positionFirst).getPlausibility() == currentFrame.getEmotions().get(positionSecond).getPlausibility();
 	}
 	
-	/**
-	 * adust plausibilites of the emotions in the array list with the plausibilities of the emotion attributes
-	 * @param currentFrame
-	 */
-	public static void adjustPlausibility(Frame currentFrame)
-	{
-		currentFrame.getEmotions().get(0).setPlausibility(currentFrame.getAnger().getPlausibility());
-		currentFrame.getEmotions().get(1).setPlausibility(currentFrame.getFear().getPlausibility());
-		currentFrame.getEmotions().get(2).setPlausibility(currentFrame.getJoy().getPlausibility());
-		currentFrame.getEmotions().get(3).setPlausibility(currentFrame.getSurprise().getPlausibility());
-	}
 	
 
 }

@@ -11,7 +11,6 @@ public class Anger extends Emotion
 		name = Classification.Anger;
 	}
 	public Anger() {
-		// TODO Auto-generated constructor stub
 		name = Classification.Anger;
 	}
 }
